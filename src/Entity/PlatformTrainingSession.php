@@ -39,13 +39,13 @@ class PlatformTrainingSession
     private $duration;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\PlatformUser")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
     private $trainer;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\PlatformUser")
+     * @ORM\ManyToMany(targetEntity="App\Entity\User")
      */
     private $subscribers_trainee;
 
@@ -57,6 +57,7 @@ class PlatformTrainingSession
     public function __construct()
     {
         $this->subscribers_trainee = new ArrayCollection();
+        $this->date = new \DateTime();
     }
 
     public function getId(): ?int
@@ -112,12 +113,12 @@ class PlatformTrainingSession
         return $this;
     }
 
-    public function getTrainer(): ?PlatformUser
+    public function getTrainer(): ? User
     {
         return $this->trainer;
     }
 
-    public function setTrainer(?PlatformUser $trainer): self
+    public function setTrainer(?User $trainer): self
     {
         $this->trainer = $trainer;
 
@@ -132,7 +133,7 @@ class PlatformTrainingSession
         return $this->subscribers_trainee;
     }
 
-    public function addSubscribersTrainee(PlatformUser $subscribersTrainee): self
+    public function addSubscribersTrainee(User $subscribersTrainee): self
     {
         if (!$this->subscribers_trainee->contains($subscribersTrainee)) {
             $this->subscribers_trainee[] = $subscribersTrainee;
@@ -141,7 +142,7 @@ class PlatformTrainingSession
         return $this;
     }
 
-    public function removeSubscribersTrainee(PlatformUser $subscribersTrainee): self
+    public function removeSubscribersTrainee(User $subscribersTrainee): self
     {
         if ($this->subscribers_trainee->contains($subscribersTrainee)) {
             $this->subscribers_trainee->removeElement($subscribersTrainee);

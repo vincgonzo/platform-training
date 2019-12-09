@@ -54,4 +54,14 @@ class GenderType
 
         return $this;
     }
+    /**
+     * Magic method 
+     * 
+     */
+    public function __toString(){
+        // to show the name of the Category in the select
+        return $this->title_gender;
+        // to show the id of the Category in the select
+        // return $this->id;
+    }
 }
