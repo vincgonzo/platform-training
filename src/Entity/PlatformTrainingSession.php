@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PlatformTrainingSessionRepository")
@@ -35,6 +36,10 @@ class PlatformTrainingSession
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min=2,
+     *      max=8
+     * )
      */
     private $duration;
 
@@ -46,6 +51,10 @@ class PlatformTrainingSession
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User")
+     * @Assert\Count(
+     *      min=0,
+     *      max=2
+     * )
      */
     private $subscribers_trainee;
 

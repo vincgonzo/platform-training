@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GenderTypeController!{% endblock %}
+{% block title %}Homepage{% endblock %}
 
 {% block body %}
 <style>
@@ -11,6 +11,12 @@
 <div class="example-wrapper">
     <h1>Hello {{ controller_name }}! ✅</h1>
 
+    {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+    {% endfor %}
+
     {% if training_sessions %}
     <table class="table table-dark">
         <thead>
@@ -18,7 +24,7 @@
             <th scope="col">Date</th>
             <th scope="col">Training Session</th>
             <th scope="col">description</th>
-            <th scope="col">duration</th>
+            <th scope="col">duration (hours)</th>
             {% if is_granted('ROLE_USER') %}<th scope="col">Interactions</th>{% endif %}
             </tr>
         </thead>

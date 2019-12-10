@@ -20,10 +20,10 @@ class HomepageController extends AbstractController
     public function index()
     {
         $trainingSessions = $this->tSessions->findAll();
-        dump($trainingSessions);
+        
         return $this->render('homepage.html.twig', [
             'training_sessions' => $trainingSessions,
-            'controller_name' => 'HoemapgeController',
+            'controller_name' => 'Home',
         ]);
     }
 }

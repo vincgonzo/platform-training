@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PlatformTrainingSessionController!{% endblock %}
+{% block title %}training {{ training.title }}{% endblock %}
 
 {% block body %}
 <style>
@@ -8,9 +8,28 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    
+<div class="container">
+    {% if training %}
+        <div class="container">
+            <div class="col-lg-12 col-sm-12">
+                <h1>Training : {{ training.title }}</h1>
+                <hr>
+            </div>
+            <div class="col-lg-8 col-sm-12">
+                <h3>-- Trainer : {{ trainer.name }}</h3>
+                <p>You can mail it @ <a href="mailto:{{ trainer.email }}">{{ trainer.email }}</a></p>
+                <h4>{{ training.duration }}h - {{ training.date | date('d/m/Y') }}</h4>
+                <hr>
+                <quote>{{ training.description }}</quote><br>
+                {#
+                # if is_granted('IS_AUTHENTICATED_FULLY')
+                # Here I'll need to check auth to display subscription btn / create user btn
+                #}
+                <a href="{{ path('user_creation') }}" class="btn btn-primary">Create a user to continue</a>
+                
+            </div>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
