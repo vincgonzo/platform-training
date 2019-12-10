@@ -28,7 +28,7 @@ class PlatformTrainingSessionController extends AbstractController
     {
         $trainingInfos = $this->trainingRepo->find($id);
         $trainerInfos = $this->userRepo->find($trainingInfos->getTrainer()->getId());
-        dump($trainingInfos->getSubscribersTrainee());
+        //dump($trainingInfos->getSubscribersTrainee());
 
         return $this->render('platform_training_session/index.html.twig', [
             'training' => $trainingInfos,
